@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 public class Exo_10 {
@@ -76,15 +74,15 @@ public class Exo_10 {
 
         public byte moyenneGenerale(){
             int moyenne = 0;
-            for(int i = 0 ; i < etudiants.size();i++){
-                moyenne += etudiants.get(i).noteFinale();
+            for(int i = 0 ; i < this.etudiants.size();i++){
+                moyenne += this.etudiants.get(i).noteFinale();
             }
             return (byte) (moyenne / etudiants.size());
         }
 
         public void afficherResultats(){
-            for(int i = 0; i < etudiants.size();i++){
-                etudiants.get(i).afficherResultat();
+            for(int i = 0; i < this.etudiants.size();i++){
+                this.etudiants.get(i).afficherResultat();
             }
         }   
 
