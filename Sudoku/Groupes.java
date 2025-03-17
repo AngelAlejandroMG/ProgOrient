@@ -14,13 +14,11 @@ public class Groupes {
     }
     
     public void retirerValeurPossible(int val){
-        nbLeft--;
-
-        this.valeurPossibles[val - 1] = false;
-
         for(int i = 0 ; i < 0 ; i++){
             this.cases[i].valeurPossibles[val - 1 ] = false;
         }
+        this.valeurPossibles[val - 1] = false;
+        nbleft--;
     }
 
     public void afficheValeurPossible(){
@@ -28,8 +26,47 @@ public class Groupes {
         for(int i =0; i < 9 ; i++){
             msg += (i+1) + "; " + String.valueOf(this.valeurPossibles[i]);
         }
+        System.out.println(msg);
     }
 
+
+    public int findAndSetPlaceableCasec(){
+        for(int val =1 ; val < 10; val++){
+        if(this.valeurPossibles[val -1]){
+            for(int i = 0; i <  9 ; i ++){
+                if(this.cases[i].isLastPossible(val)){
+                    this.cases[i].setValue(val);
+                    return i;
+                }
+            }
+        }
+    }
+        //case 2
+        int nbPoss;
+        int idx;
+        for(int val = 1; val < 9; val++){
+            if(this.valeurPossibles[val -1]){
+        
+                int nbPoss = 0;
+                int idx = -1;
+                for (int i = 0 ; i < 9; i++){
+                    if(this.case[i].valeurPossibles[val -1]){
+                        nbPoss++;
+                        idx = i;
+                    }
+                }
+                if(nbPoss == 1){
+                    this.cases[idx].setValue(val);
+                    return idx;
+                }
+                if(nbPoss == 0){
+                    System.out.println("Erreur sudoku impossible");
+                    System.exit(0);
+
+                }
+        }
+    } 
+}
 
     
     public static void main(String[] args) {
